@@ -30,27 +30,29 @@
 # Lucros para fazer o Gráfico ;)
 # https://api-analitica.sunoresearch.com.br/api/Statement/GetStatementResultsReportByTicker?type=y&ticker=WEGE3&period=10
 
-import sys, os
+import os
+import sys
+
 sys.path.extend([f'./{name}' for name in os.listdir(".") if os.path.isdir(name)])
 
-import fundamentus
-import stocks
-import backtest
-import browser
-
-import pandas
-import numpy
-import re
-
-from math import sqrt
-from decimal import Decimal
-
 import http.cookiejar
-import urllib.request
 import json
+import re
 import threading
 import time
+import urllib.request
+from decimal import Decimal
+from math import sqrt
+
+import backtest
+import browser
+import fundamentus
+import numpy
+import pandas
 import pyperclip
+
+import stocks
+
 
 # Populate shares panda dataframe with the provided year
 def populate_shares(year):
