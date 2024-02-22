@@ -2,15 +2,15 @@
 
 # Captura os dados iniciais a partir do site www.fundamentus.com.br
 
-import re
-import urllib.request
-import urllib.parse
 import http.cookiejar
-import pandas
+import re
 import time
-
-from lxml.html import fragment_fromstring
+import urllib.parse
+import urllib.request
 from decimal import Decimal
+
+import pandas
+from lxml.html import fragment_fromstring
 
 # Setores das ações da bolsa!
 # Preenchidos a partir da lista oficial da B3!
@@ -2133,7 +2133,7 @@ def shares(year = None):
   for rows in page.xpath('tbody')[0].findall("tr"):
       new_row = pandas.DataFrame(index=[rows.getchildren()[0][0].getchildren()[0].text],
                                  data=dataframe_data(rows, year))
-      result = result.append(new_row)
+      result = result._append(new_row)
   
   result = result[result['Cotação'] > 0]
 

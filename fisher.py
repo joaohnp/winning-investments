@@ -12,18 +12,21 @@
 # - [x] 2. PSR < 1 => Aumenta 1 ponto
 # - [x] 3. PSR < 0.75 => Aumenta 1 ponto
 # - [x] 4. Taxa de Rentabilidade alta: L/P > Selic
+#%%
+import os
+import sys
 
-import sys, os
 sys.path.extend([f'./{name}' for name in os.listdir(".") if os.path.isdir(name)])
-
+#%%
 import time
+from decimal import Decimal
+
+import backtest
+import fundamentus
 import pyperclip
 
-import fundamentus
 import stocks
-import backtest
 
-from decimal import Decimal
 
 def populate_shares(year):
   globals()['year'] = year
@@ -62,7 +65,7 @@ def fill_score(shares):
 # Mostra quais filtros a ação passou para pontuar seu Score
 def fill_score_explanation(shares):
   shares['PSR < 3'] = shares['PSR'] < 3
-  shares['PSR < 1.0'] = shares['PSR'] < 1.0
+  shares['PSR < 1.0'] = shares['PSR'] < 1
   shares['PSR < 0.75'] = shares['PSR'] < 0.75
   shares['L/P > Taxa Selic'] = (shares['P/L'] ** -1) > 0.3
 
@@ -108,3 +111,5 @@ if __name__ == '__main__':
 # * Aceite que Você pode estar Errado: Fisher defende a diversificação pois acredita que todos podem estar errados. Ao diversificar, você reduz o risco de seus investimentos e evita erros de julgamento que levam a prejuízos financeiros.
 # * Pense Relativamente: nesta dica Fisher diz para sempre pensarmos os números também nos valores relativos. Uma desastre econômico com uma perda de 20 bilhões de dólares significa apenas 0,1% de um País com PIB de 24 trilhões. Portanto, sempre que ver ou ouvir algum número, tente imaginar de forma relativa. Ou seja, esse valor é grande em relação ao que? Será que ele é realmente significativo?
 # * Pense Globalmente: as tendências globais prevalecem sobre as locais em qualquer país, incluindo os EUA. O dinheiro atravessa fronteiras com relativa liberdade. Portanto, se você já possui uma grande quantidade de capital acumulado, talvez seja o momento ideal de investir em outros países e bolsas. Além de ter acesso a grandes empresas e mercados mais maduros, vai diversificar sua carteira, diluindo o risco.
+
+# %%
